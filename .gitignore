@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+node_modules
+templates/frontend/js/copyfiles/resources/framework/themes/default/js/
+templates/frontend/js/copyfiles/resources/framework/themes/default/layout/
+templates/frontend/reactjs/copyfiles/resources/framework/themes/default/js/
+templates/frontend/reactjs/copyfiles/resources/framework/themes/default/layout/
+templates/native/
+templates/server/java/copyfiles/server/simpleserver/src/main/java/com/simple/core/components/
+templates/server/java/copyfiles/server/simpleserver/src/main/java/com/simple/core/framework/global/
+templates/server/java/copyfiles/server/simpleserver/src/main/java/com/simple/core/framework/mongo/service/
+templates/server/java/copyfiles/server/simpleserver/src/main/java/com/simple/core/utils/
+templates/server/java/copyfiles/server/simpleserver/src/main/java/com/simple/server/bz/
+templates/website/java/copyfiles/simpleserver/src/main/resources/static/
+templates/website/python/
+
