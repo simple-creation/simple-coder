@@ -1,6 +1,8 @@
 .idea/
 node_modules/
-templates/
 modules/
 package/
+src/
+test/
+package-lock.json
 

@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 node_modules
+src/
+test/
 templates/frontend/js/copyfiles/resources/framework/themes/default/js/
 templates/frontend/js/copyfiles/resources/framework/themes/default/layout/
 templates/frontend/reactjs/copyfiles/resources/framework/themes/default/js/

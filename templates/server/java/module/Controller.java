@@ -1,166 +1,111 @@
+
 package <%=data.packageName%>.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import <%=data.packageName%>.entity.*;
+import <%=data.packageName%>.dto.*;
 import <%=data.packageName%>.service.*;
 
 
-//import io.swagger.annotations.ApiImplicitParam;
-//import io.swagger.annotations.ApiOperation;
+import com.simple.common.api.*;
+import com.simple.common.controller.BaseController;
 
-@Controller
-@RequestMapping("/<%=data.originModuleName%>")
-public class <%=data.moduleName%>Controller {
-	@Autowired
-	<%=data.moduleName%>Service service;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-  <% for (var field in data.moduleDefine){
-                var fieldDef  = data.moduleDefine[field];
-                var fieldName = fieldDef.dName;
-                var keyName = field;
-
-                var refer = fieldDef.refer;
-                if (refer) {
-                var clsName = data.firstUpper(refer.module);
-                %>
-   @Autowired
-   private  <%=clsName%>Service <%=refer.module%>Service;
-   <%}}%>
+import java.util.List;
 
 
-	@RequestMapping(value= "/", method=RequestMethod.GET)
-    public String rootpage(){
-    	       return "index";
-    }
-	@RequestMapping(value = "/queryAll", method = RequestMethod.GET)
-	@ResponseBody
-	public List<<%=data.moduleName%>> findAll() {
-		return service.findAll();
-	}
-	@ResponseBody
-    @RequestMapping(value = "/query/{id}", method = RequestMethod.GET)
-    public <%=data.moduleName%> findById(@PathVariable Long id) {
-       	System.out.println("input param Id:" + id);
-       	<%=data.moduleName%> result = service.findById(id);
-    	return result;
-    }
-    @ResponseBody
-    @RequestMapping(value = "/queryByNameLike/", method = RequestMethod.GET)
-    public List<<%=data.moduleName%>> findByNameLike(@RequestParam("name") String name ) {
-           	System.out.println("input param Name:" + name);
-            return service.findByNameLike(name);
 
+@AllArgsConstructor
+@RestController
+@Api(tags = "<%=data.moduleClassName%>接口")
+@RequestMapping("/<%=data.moduleName%>")
+public class <%=data.moduleClassName%>Controller extends BaseController {
+
+    private final <%=data.moduleClassName%>Service service;
+
+    @ApiOperation(value="查询全部数据项（用于测试)")
+    @GetMapping(path = "/queryAll")
+    public SimpleResponse<<%=data.moduleClassName%>sDto> queryAll (){
+
+        List<<%=data.moduleDtoClassName%>> list = service.findAll();
+        SimpleResponse<<%=data.moduleClassName%>sDto> result = new SimpleResponse<<%=data.moduleClassName%>sDto>();
+
+        return result.success(<%=data.moduleClassName%>sDto.builder().items(list).build());
     }
 
-    @ResponseBody
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public <%=data.moduleName%> save(@RequestBody <%=data.moduleName%> item) {
-		System.out.println("input device params:" + item.toString());
-		<%=data.moduleName%> result = service.save(item);
-		System.out.println("output device result data:" + result.toString());
-		return result;
-	}
-    @ResponseBody
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public <%=data.moduleName%> save2(@RequestBody <%=data.moduleName%> item) {
-		 <% for (var field in data.moduleDefine){
-                                   var fieldDef  = data.moduleDefine[field];
-                                   var fieldName = fieldDef.dName;
-                                   var keyName = field;
+    @ApiOperation(value="查询全部数据项")
+    @GetMapping(path = "/queryAllDetails")
+    public SimpleResponse<<%=data.moduleClassName%>DetailsDto> queryAllDetails(){
 
-                                   var refer = fieldDef.refer;
-                                   if (refer) {
-                                   var clsName = data.firstUpper(refer.module);
-                                   var fieldNameUpper = data.firstUpper(field);
-                                   var idType = data.moduleDefine['id'].type;
-         %>
-                   <%=idType%> <%=field%>Id =item.get<%=fieldNameUpper%>().getId();
-                   if (<%=field%>Id > 0){
-                   	  <%=clsName%> <%=field%>Obj = <%=refer.module%>Service.findById(<%=field%>Id);
-                      item.set<%=fieldNameUpper%>(<%=field%>Obj);
-                   }
+        List<<%=data.moduleClassName%>DetailDto> list = service.findAllDetails();
+        SimpleResponse<<%=data.moduleClassName%>DetailsDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailsDto>();
 
-         <%}}%>
-
-		System.out.println("input device params:" + item.toString());
-		<%=data.moduleName%> result = service.save(item);
-		System.out.println("output device result data:" + result.toString());
-		return result;
-	}
-
-
-    @ResponseBody
- 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
- 	public <%=data.moduleName%> update(@PathVariable Long id, @RequestBody <%=data.moduleName%> item) {
- 		System.out.println("input device params:" + item.toString());
- 		<%=data.moduleName%> result = service.save(item);
- 		System.out.println("output device result data:" + result.toString());
- 		return result;
- 	}
-
- 	@ResponseBody
-     	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-     	public <%=data.moduleName%> updateSave(@PathVariable Long id, @RequestBody <%=data.moduleName%> item) {
-     	   <% for (var field in data.moduleDefine){
-                           var fieldDef  = data.moduleDefine[field];
-                           var fieldName = fieldDef.dName;
-                           var keyName = field;
-
-                           var refer = fieldDef.refer;
-                           if (refer) {
-                           var clsName = data.firstUpper(refer.module);
-                           var fieldNameUpper = data.firstUpper(field);
-                           var idType = data.moduleDefine['id'].type;
-           %>
-           <%=idType%> <%=field%>Id =item.get<%=fieldNameUpper%>().getId();
-           if (<%=field%>Id > 0){
-           	  <%=clsName%> <%=field%>Obj = <%=refer.module%>Service.findById(<%=field%>Id);
-              item.set<%=fieldNameUpper%>(<%=field%>Obj);
-           }
-
-           <%}}%>
-
-
-
-     		System.out.println("input device params:" + item.toString());
-     		<%=data.moduleName%> result = service.save(item);
-     		System.out.println("output device result data:" + result.toString());
-     		return result;
-     	}
-
-
-
-    @ResponseBody
-   	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-   	public Long remove(@PathVariable Long id) {
-		service.remove(id);
-        return id;
+        return result.success(<%=data.moduleClassName%>DetailsDto.builder().items(list).build());
     }
-    @ResponseBody
-    @RequestMapping(value = "/remove/{id}", method = RequestMethod.POST)
-    public Long removeById(@PathVariable Long id) {
-    	service.remove(id);
-    	return id;
+
+    @ApiOperation(value="根据ID获取数据",notes = "")
+    @PostMapping(path = "/findById")
+    public SimpleResponse<<%=data.moduleClassName%>DetailDto> findById (@RequestBody SimpleRequest<IdRequest> request){
+        Long id = request.getParams().getId();
+        System.out.println("applicationId:" + id);
+        <%=data.moduleClassName%>DetailDto dto = service.findDetailById(id);
+        SimpleResponse<<%=data.moduleClassName%>DetailDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailDto>();
+        return result.success(dto);
+    }
+
+    @ApiOperation(value="根据ID获取详细的全量信息",notes = "")
+    @PostMapping(path = "/findDetailById")
+    public SimpleResponse<<%=data.moduleClassName%>DetailDto> findDetailById (@RequestBody SimpleRequest<IdRequest> request){
+        Long id = request.getParams().getId();
+        System.out.println("applicationId:" + id);
+        <%=data.moduleClassName%>DetailDto dto = service.findDetailById(id);
+        SimpleResponse<<%=data.moduleClassName%>DetailDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailDto>();
+        return result.success(dto);
+    }
+
+    @ApiOperation(value="新增",notes = "")
+    @PostMapping(path = "/addNew")
+    public SimpleResponse<<%=data.moduleDtoClassName%>> addNew (@RequestBody SimpleRequest<<%=data.moduleClassName%>NewDto> request){
+        <%=data.moduleClassName%>NewDto dto = request.getParams();
+        <%=data.moduleDtoClassName%> data = service.save(dto);
+        SimpleResponse<<%=data.moduleDtoClassName%>> result = new SimpleResponse<<%=data.moduleDtoClassName%>>();
+        return result.success(data);
+    }
+
+
+    @ApiOperation(value="修改信息",notes = "")
+    @PostMapping(path = "/update")
+    public SimpleResponse<<%=data.moduleDtoClassName%>> updateSave(@RequestBody SimpleRequest<<%=data.moduleDtoClassName%>> req) {
+        <%=data.moduleDtoClassName%> dto = req.getParams();
+        System.out.println(dto.toString());
+        service.update(dto);
+        SimpleResponse<<%=data.moduleDtoClassName%>> result = new SimpleResponse<<%=data.moduleDtoClassName%>>();
+        return result.success(dto);
+
     }
 
 
 
-
-    <%if (data.moduleName=='Dictionary'){%>
+    @ApiOperation(value="根据ID删除",notes = "")
     @ResponseBody
-    @RequestMapping(value = "/queryByCategory/", method = RequestMethod.GET)
-    public List<Dictionary> findByParams(@RequestParam("category") String category) {
-           	System.out.println("input param category:" + category);
-            Category citem  = categoryService.findOneByName(category);
-           	List<Dictionary> result = service.findByCategory(citem);
-        	return result;
+    @RequestMapping(value = "/removeById", method = RequestMethod.POST)
+    public IdResponse doRemoveById(@RequestBody IdRequest req) {
+        service.remove(req.getParams().getId());
+        return IdResponse.buildSuccess(req.getId());
     }
-   <%}%>
+
+
+    @ApiOperation(value="批量删除",notes = "")
+    @ResponseBody
+    @RequestMapping(value = "/removeBatch", method = RequestMethod.POST)
+    public BatchIdsResponse removeBatch(@RequestBody BatchIdsRequest req) {
+        System.out.println(req.getIds().toString());
+        service.removeBatch(req.getIds());
+        return BatchIdsResponse.buildSuccess(req.getIds());
+    }
+
+
 
 }

@@ -2,7 +2,7 @@
 const path = require('path');
 const commander = require('commander');
 const { version } = require('./package.json');
-console.log('input pramas',process.argv.slice(3));
+console.log('Input pramas:',process.argv.slice(3));
 // 创建 init 命令
 commander
     .command('create') // 命令的名称
@@ -18,9 +18,32 @@ commander
 
 // 创建新模块
 commander
+    .command('create-java-module') // 命令的名称
+    .alias('cm') // 命令的别名
+    .description('simple-coder create-java-module  <package-name> <module-name>, to create a new java module') // 命令的描述
+    .action(() => { // 动作
+        
+        if (process.argv.slice(3).length) {
+            let packageName = process.argv[3]
+            let moduleName = process.argv[4]
+            
+            let srcPath = "./";
+            if (process.argv.slice(4).length){
+                srcPath = process.argv[4];
+            }
+            console.log('moduleName:',moduleName)
+            console.log("packageName:",packageName);
+            require(path.resolve(__dirname, './lib/java-module-creator.js'))(packageName,moduleName);
+        } else {
+            console.log('Please enter a module name, or Entry simple-coder --help');
+        }
+    });    
+
+// 创建新模块
+commander
     .command('create-module') // 命令的名称
     .alias('cm') // 命令的别名
-    .description('simple-coder create-module <module-name> <sourcecode-relative-path>, to create a new module') // 命令的描述
+    .description('simple-coder create-node-module <module-name> <sourcecode-relative-path>, to create a new module') // 命令的描述
     .action(() => { // 动作
         
         if (process.argv.slice(3).length) {
