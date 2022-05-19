@@ -4,5 +4,6 @@ modules/
 package/
 src/
 test/
+test-service/
 package-lock.json
 
