@@ -47,11 +47,11 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
 
     @ApiOperation(value="根据ID获取数据",notes = "")
     @PostMapping(path = "/findById")
-    public SimpleResponse<<%=data.moduleClassName%>DetailDto> findById (@RequestBody SimpleRequest<IdRequest> request){
+    public SimpleResponse<<%=data.moduleDtoClassName%>> findById (@RequestBody SimpleRequest<IdRequest> request){
         Long id = request.getParams().getId();
         System.out.println("applicationId:" + id);
-        <%=data.moduleClassName%>DetailDto dto = service.findDetailById(id);
-        SimpleResponse<<%=data.moduleClassName%>DetailDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailDto>();
+        <%=data.moduleDtoClassName%> dto = service.findById(id);
+        SimpleResponse<<%=data.moduleDtoClassName%>> result = new SimpleResponse<<%=data.moduleDtoClassName%>>();
         return result.success(dto);
     }
 

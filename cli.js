@@ -12,10 +12,17 @@ commander
         if (process.argv.slice(3).length) {
             require(path.resolve(__dirname, './lib/create.js'))(process.argv.slice(3));
         } else {
-            console.log('Please enter a project name, or Entry simple-coder --help');
+            console.log('Please enter a project directory name, or Entry simple-coder --help');
         }
     });
-
+    // 创建 init 命令
+commander
+        .command('setup') // 命令的名称
+        .alias('s') // 命令的别名
+        .description('simple-coder setup <project-name>, to config a new project') // 命令的描述
+        .action(() => { // 动作
+                require(path.resolve(__dirname, './lib/setup.js')).setup(process.argv.slice(3));
+        });
 // 创建新模块
 commander
     .command('create-java-module') // 命令的名称
