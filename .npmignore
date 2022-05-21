@@ -5,5 +5,7 @@ package/
 src/
 test/
 test-service/
+test-admin/
+test-mini/
 package-lock.json
 
