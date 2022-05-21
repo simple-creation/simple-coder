@@ -1,0 +1,55 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "订单列表",
+          "pathName": "pages/orders/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "服务列表",
+          "pathName": "pages/goods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "下单页面",
+          "pathName": "pages/orders/add",
+          "query": "serviceId=4",
+          "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/orders/detail",
+          "query": "orderId=53",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "品牌商品列表",
+          "pathName": "pages/goods/list",
+          "query": "brandId=1385",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

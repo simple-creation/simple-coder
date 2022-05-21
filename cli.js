@@ -17,11 +17,11 @@ commander
     });
     // 创建 init 命令
 commander
-        .command('setup') // 命令的名称
+        .command('config') // 命令的名称
         .alias('s') // 命令的别名
-        .description('simple-coder setup <project-name>, to config a new project') // 命令的描述
+        .description('simple-coder config <project-name>, to config a new project') // 命令的描述
         .action(() => { // 动作
-                require(path.resolve(__dirname, './lib/setup.js')).setup(process.argv.slice(3));
+                require(path.resolve(__dirname, './lib/setup.js')).setProjectConfig(process.argv.slice(3));
         });
 // 创建新模块
 commander

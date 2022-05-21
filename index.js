@@ -1,4 +1,4 @@
 /**
- * Created by ctrip on 16/9/5.
+ * Created by ctrip on 22/5/21.
  */
-module.exports = require('./coder');
+module.exports = require('./simple-coder');
