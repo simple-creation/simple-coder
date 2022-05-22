@@ -40,10 +40,11 @@
 
 2. 在node.js第三方应用环境下使用
 
+```
     const simpleCoder = require('simple-coder');
 
     const supportApplications = simpleCoder.getSupportApplications();
-    
+
     console.log('support application list->', supportApplications);
 
     const configData = {
@@ -52,6 +53,13 @@
       appId: '100001',
     }
     simpleCoder.createProject(configData);
+```
+### 目前支持的项目类型
+  1. 项目类型：
+  |类型名称|类型标识|描述|备注|
+  -:|:-:|:-:|:-
+  |Java服务|server:spring-boot|基于Spring-boot框架的Java服务|依赖于simple-lib公共库|
+
 
 ### FAQ
 
