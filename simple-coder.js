@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
 var path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
@@ -13,13 +12,14 @@ const createProject = async (configData,workRootPath)=> {
         return "";
     }
     const appliationName = configData.name;
+    const templateName   = configData.templateName;
     if(!workRootPath){
         const USER_HOME = process.env.HOME || process.env.USERPROFILE;
         const tempPath = path.join(USER_HOME,".temp/simple-coder");
         workRootPath = path.join(tempPath,appliationName);
     }
     
-    const template = await projectSetup.fetchTemplateConfig(appliationName);
+    const template = await projectSetup.fetchTemplateConfig(templateName);
     await projectSetup.initProjectByTemplate(template,configData,workRootPath);
     return workRootPath;
     

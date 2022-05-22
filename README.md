@@ -2,41 +2,34 @@
 
 ### 环境配置
 1. 安装node，npm版本3以上。
-2. 设置npm组件库
-npm config set registry http://registry.npmjs.org/
 
-3. 全局安装simple-coder
+2. 全局安装simple-coder
 
- npm install -g simple-coder
+  npm install -g simple-coder
 
-5. 从零开始生成项目：
-simple-coder 【项目类型】【项目名称】
-6. 进入此项目
-cd project-name
-6.开始使用
+### 从零开始生成项目：
+1. 工作目录执行创建
+   simple-coder create【项目名称】
+2. 在命令提示行选择项目类型，录入项目基本配置信息信息
+3. 进行项目     
+   cd 【项目名称】
+4. 开始使用
 
-### 前端项目结构及使用
-- 创建项目
-  
-- 项目结构 
-  1.config 配置用
-  2.release 打包发布用。
-  3.
-  4.
-- 项目使用  
-- 项目发布  
-  
+
+### 快速智能生成项目模块
+1. 创建Java Service模块
+-  进入Service项目源码目录或API-RPC项目目录
+   cd service
+-  在服力的Model定义目录下创建一个模块的Model类（暂支持JPA ORM)
+   cd src/main/java/com/simple/bz/model
+   创建一个Model类
+-  用simple-coder根据此目录下的所有Model类自动创建对应的 DAO,DTO,SERVICE,CONTROLLER
+   simple-coder create-java-module [Model名]
+   如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER
+ 
+2. 创建小程序模块
+
 ### 服务端项目结构及使用：
-- 创建项目
-  
-- 项目结构 
-  1.config 配置用
-  2.release 打包发布用。
-  3.
-  4.
-- 项目使用  
-- 项目发布  
-
 
 ### FAQ
 
