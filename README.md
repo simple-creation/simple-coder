@@ -37,20 +37,20 @@
 1. 应用安装
    
    $npm install simple-coder
-   
+
 2. 在node.js第三方应用环境下使用
 
-  const simpleCoder = require('simple-coder');
+    const simpleCoder = require('simple-coder');
 
-  const supportApplications = simpleCoder.getSupportApplications();
-  console.log('support application list->', supportApplications);
+    const supportApplications = simpleCoder.getSupportApplications();
+    console.log('support application list->', supportApplications);
 
-  const configData = {
-     templateName:'server:spring-boot',
-     name:'test-server',
-     appId: '100001',
-  }
-  simpleCoder.createProject(configData);
+    const configData = {
+      templateName:'server:spring-boot',
+      name:'test-server',
+      appId: '100001',
+    }
+    simpleCoder.createProject(configData);
 
 ### FAQ
 
