@@ -1,7 +1,7 @@
 {
   "name": "simple-coder",
-  "version": "1.0.73",
-  "description": "simple code tool!",
+  "version": "1.0.75",
+  "description": "simple code tool",
   "directories": {
     "lib": "lib"
   },
