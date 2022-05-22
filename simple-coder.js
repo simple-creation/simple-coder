@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
-var projectSetup = require('./lib/setup');
+const projectSetup = require('./lib/setup');
+const codeTools = require('./lib/code-tools');
+const executeTools = require('./lib/execute-tool');
 
 const createProject = async (configData,workRootPath)=> {
     let result = true;
@@ -33,7 +35,7 @@ const createProject = async (configData,workRootPath)=> {
     return workRootPath;
     
 }
-const getTempWorkPath = async () =>{
+const getTempWorkPath = () =>{
     const USER_HOME = process.env.HOME || process.env.USERPROFILE;
     const tempPath = path.join(USER_HOME,".temp/simple-coder");
     if (!fs.existsSync(tempPath)) {
@@ -41,7 +43,7 @@ const getTempWorkPath = async () =>{
     }
     return tempPath;
 }
-const getSupportApplications = async() =>{
+const getSupportApplications = () =>{
     return projectSetup.getSupportApplications();
 }
 module.exports.getSupportApplications = getSupportApplications;
