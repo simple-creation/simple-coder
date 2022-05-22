@@ -35,11 +35,13 @@
 
 ### 组件供第三方应用使用：
 1. 应用安装
+   
    $npm install simple-coder
+   
 2. 在node.js第三方应用环境下使用
 
   const simpleCoder = require('simple-coder');
-  
+
   const supportApplications = simpleCoder.getSupportApplications();
   console.log('support application list->', supportApplications);
 
