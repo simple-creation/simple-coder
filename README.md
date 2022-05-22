@@ -33,11 +33,22 @@
  
 2. 创建小程序模块
 
-### 作为组件使用：
+### 组件供第三方应用使用：
 1. 应用安装
-
-$npm i simple-coder
+   $npm install simple-coder
 2. 在node.js第三方应用环境下使用
+
+  const simpleCoder = require('simple-coder');
+  
+  const supportApplications = simpleCoder.getSupportApplications();
+  console.log('support application list->', supportApplications);
+
+  const configData = {
+     templateName:'server:spring-boot',
+     name:'test-server',
+     appId: '100001',
+  }
+  simpleCoder.createProject(configData);
 
 ### FAQ
 
