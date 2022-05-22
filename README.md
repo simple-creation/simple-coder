@@ -56,9 +56,15 @@
 ```
 ### 目前支持的项目类型
   1. 项目类型：
-  |类型名称|类型标识|描述|备注|
-  -:|:-:|:-:|:-
+  |类型名称|类型标识|描述|备注| 
+  |-:|:-:|:-:|:-| 
   |Java服务|server:spring-boot|基于Spring-boot框架的Java服务|依赖于simple-lib公共库|
+
+  | Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 
 ### FAQ
