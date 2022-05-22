@@ -55,7 +55,7 @@ public class DemoModel implements Serializable {
 }
 ```
   
--  用simple-coder create-java-module [基本包名][Model名]自动创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
+-  用simple-coder create-java-module [基本包名][Model名]自动解析Model并创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
 
    $simple-coder create-java-module com.simple.bz Demo
    
