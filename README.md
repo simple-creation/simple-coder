@@ -43,6 +43,7 @@
     const simpleCoder = require('simple-coder');
 
     const supportApplications = simpleCoder.getSupportApplications();
+    
     console.log('support application list->', supportApplications);
 
     const configData = {
