@@ -24,5 +24,8 @@ const createProject = async (configData,workRootPath)=> {
     return workRootPath;
     
 }
-
+const getSupportApplications = async() =>{
+    return projectSetup.getSupportApplications();
+}
+module.exports.getSupportApplications = getSupportApplications;
 module.exports.createProject = createProject;

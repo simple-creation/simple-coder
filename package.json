@@ -1,7 +1,7 @@
 {
   "name": "simple-coder",
-  "version": "1.0.61",
-  "description": "tool to generate code and framework",
+  "version": "1.0.71",
+  "description": "simple code tool!",
   "directories": {
     "lib": "lib"
   },
@@ -19,18 +19,15 @@
   "author": "joezhang",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.0",
+ 
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "cors": "^2.8.5",
     "download-git-repo": "^3.0.2",
     "ejs": "^2.7.4",
-    "express": "^4.17.1",
     "inquirer": "^8.2.0",
     "lodash": "^4.13.1",
-    "lowdb": "^0.13.1",
     "prompt": "^1.0.0",
-    "shelljs": "^0.8.4",
-    "simple-git": "^2.46.0"
+    "shelljs": "^0.8.4"
   }
 }
