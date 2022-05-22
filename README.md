@@ -20,12 +20,11 @@
 1. 创建Java Service模块
 -  进入Service项目源码目录或API-RPC项目目录
    cd service
--  在服力的Model定义目录下创建一个模块的Model类（暂支持JPA ORM)
-   cd src/main/java/com/simple/bz/model
-   创建一个Model类
--  用simple-coder根据此目录下的所有Model类自动创建对应的 DAO,DTO,SERVICE,CONTROLLER
+-  在服务代码的Model定义目录（om/simple/bz/model）下创建一个模块的Model类（暂支持JPA ORM)
+  
+-  用simple-coder根据此目录下的所有Model类自动创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
    simple-coder create-java-module [Model名]
-   如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER
+   
  
 2. 创建小程序模块
 
