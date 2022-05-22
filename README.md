@@ -22,7 +22,7 @@
   
 -  用simple-coder根据此目录下的所有Model类自动创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
 
-   simple-coder create-java-module [Model名]
+   $simple-coder create-java-module [Model名]
    
  
 2. 创建小程序模块
