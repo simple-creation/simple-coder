@@ -1,9 +1,8 @@
 
 
-### 环境配置
-1. 安装node，npm版本3以上。
+### 命令行Cli工具安装
 
-2. 全局安装simple-coder
+1. 全局安装simple-coder
 
    $npm install -g simple-coder
 
