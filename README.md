@@ -60,7 +60,9 @@
   |类型名称        |类型标识               |描述                         |备注                    | 
   |---------------|:-------------------:|:----------------------------|:----------------------| 
   |Java服务|server:spring-boot|基于Spring-boot框架的Java服务|依赖于simple-lib公共库|
-  |小程序|mini:taro|基于Taro框架的小程序|依赖于simple-framework-mini组件库|
+  |小程序|mini:taro|基于Taro框架的小程序|依赖于simple-framework-mini组件库提供组件及基础功能|
+  |后台管理网站|web-admin:antd-pro|基于Ant Design Pro框架的后台管理|依赖于simple-framework组件库提供公共组件|
+  |网站|web:antd-pro|基于Ant Design Pro框架的网站|依赖于simple-framework组件库提供公共组件|
 
 
 
