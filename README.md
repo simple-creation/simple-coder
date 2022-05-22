@@ -7,8 +7,10 @@
    $npm install -g simple-coder
 
 ### 从零开始生成项目：
-1. 工作目录执行创建
-   simple-coder create【项目名称】
+1. 工作目录用 simple-coder create【项目名称】创建项目
+
+   $simple-coder create demo
+   
 2. 在命令提示行选择项目类型，录入项目基本配置信息信息
 3. 进入项目开始使用     
    $cd 【项目名称】
