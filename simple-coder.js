@@ -23,15 +23,20 @@ const createProject = async (configData,workRootPath)=> {
         workRootPath = path.join(tempPath,appliationName);
     }
     if (fs.existsSync(workRootPath)) {
-        console.log('***WARNING!*** Target directory is existed! ');
+        console.log(chalk.red('  ***WARNING!*** target directory is existed! '));
         let removeFiles = 'rm -rf ' + workRootPath;
         if(!executeTools.executeCommand(removeFiles,'remove old files')){
             return false;
         };
     }
-   
+    const loading = ora('processing ...');// 设置loading效果
     const template = await projectSetup.fetchTemplateConfig(templateName);
-    await projectSetup.initProjectByTemplate(template,configData,workRootPath);
+    const success = await projectSetup.initProjectByTemplate(template,configData,workRootPath);
+    if (!success){
+        loading.fail(chalk.red('project creating failure !'));
+        return "";
+    }
+    loading.succeed('project creating success!');
     return workRootPath;
     
 }

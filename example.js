@@ -10,13 +10,24 @@ const supportApplications = simpleCoder.getSupportApplications();
 const tempPath = simpleCoder.getTempWorkPath('tempZip');
 console.log('support application list->', supportApplications);
 console.log('temp zipfile path', tempPath);
+const testMain = async()=>{
 
-const configData = {
-     templateName:'server:spring-boot',
-     name:'test-server',
-     appId: '100001',
+    const configData = {
+        templateName:'server:spring-boot',
+        name:'test-server',
+        appId: '100001',
+   }
+   await simpleCoder.createProject(configData);
+   
+//    configData.templateName = 'web:nextjs';
+//    await simpleCoder.createProject(configData);
+
+   configData.templateName = 'web:reactjs';
+   await simpleCoder.createProject(configData);
+
 }
-simpleCoder.createProject(configData);
+testMain();
+
 
 
 
