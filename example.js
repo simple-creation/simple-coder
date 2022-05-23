@@ -17,12 +17,12 @@ const testMain = async()=>{
         name:'test-server',
         appId: '100001',
    }
-   await simpleCoder.createProject(configData);
+   //await simpleCoder.createProject(configData);
    
-//    configData.templateName = 'web:nextjs';
-//    await simpleCoder.createProject(configData);
+   configData.templateName = 'web:nextjs';
+   await simpleCoder.createProject(configData);
 
-   configData.templateName = 'web:reactjs';
+   configData.templateName = 'mini-program:taro';
    await simpleCoder.createProject(configData);
 
 }
