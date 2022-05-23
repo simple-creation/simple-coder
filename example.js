@@ -7,8 +7,9 @@ const simpleCoder = require('./simple-coder');
 console.log('Input pramas:',process.argv.slice(1));
 
 const supportApplications = simpleCoder.getSupportApplications();
-
+const tempPath = simpleCoder.getTempWorkPath('tempZip');
 console.log('support application list->', supportApplications);
+console.log('temp zipfile path', tempPath);
 
 const configData = {
      templateName:'server:spring-boot',

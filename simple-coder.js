@@ -35,13 +35,8 @@ const createProject = async (configData,workRootPath)=> {
     return workRootPath;
     
 }
-const getTempWorkPath = () =>{
-    const USER_HOME = process.env.HOME || process.env.USERPROFILE;
-    const tempPath = path.join(USER_HOME,".temp/simple-coder");
-    if (!fs.existsSync(tempPath)) {
-        codeTools.createDirectoryEx(tempPath);
-    }
-    return tempPath;
+const getTempWorkPath = (newPath) =>{
+   return projectSetup.getTempWorkPath(newPath);
 }
 const getSupportApplications = () =>{
     return projectSetup.getSupportApplications();
