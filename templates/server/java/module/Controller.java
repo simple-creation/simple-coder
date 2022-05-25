@@ -47,7 +47,7 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
 
     @ApiOperation(value="根据ID获取数据",notes = "")
     @PostMapping(path = "/findById")
-    public SimpleResponse<<%=data.moduleDtoClassName%>> findById (@RequestBody SimpleRequest<IdRequest> request){
+    public SimpleResponse<<%=data.moduleDtoClassName%>> findById (@RequestBody IdRequest request){
         Long id = request.getParams().getId();
         System.out.println("applicationId:" + id);
         <%=data.moduleDtoClassName%> dto = service.findById(id);
@@ -57,7 +57,7 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
 
     @ApiOperation(value="根据ID获取详细的全量信息",notes = "")
     @PostMapping(path = "/findDetailById")
-    public SimpleResponse<<%=data.moduleClassName%>DetailDto> findDetailById (@RequestBody SimpleRequest<IdRequest> request){
+    public SimpleResponse<<%=data.moduleClassName%>DetailDto> findDetailById (@RequestBody IdRequest request){
         Long id = request.getParams().getId();
         System.out.println("applicationId:" + id);
         <%=data.moduleClassName%>DetailDto dto = service.findDetailById(id);
