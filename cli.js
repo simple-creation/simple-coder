@@ -32,17 +32,23 @@ commander
         
         if (process.argv.slice(3).length) {
             let packageName = process.argv[3]
-            let moduleName = process.argv[4]
+            let moduleName = 'Test';
+            let targetName = 'dto';
             
-            let srcPath = "./";
             if (process.argv.slice(4).length){
-                srcPath = process.argv[4];
+                moduleName = process.argv[4];
             }
-            console.log('moduleName:',moduleName)
+
+            if (process.argv.slice(5).length){
+                targetName = process.argv[5];
+            }
             console.log("packageName:",packageName);
-            require(path.resolve(__dirname, './lib/java-module-creator.js'))(packageName,moduleName);
+            console.log('moduleName:',moduleName)
+            console.log("targetClassName:",targetName);
+            
+            require(path.resolve(__dirname, './lib/java-module-creator.js'))(packageName,moduleName,targetName);
         } else {
-            console.log('Please enter a module name, or Entry simple-coder --help');
+            console.log('Please enter a base package name, or Entry simple-coder --help');
         }
     });    
 
