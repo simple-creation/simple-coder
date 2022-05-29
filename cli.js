@@ -15,7 +15,21 @@ commander
             console.log('Please enter a project directory name, or Entry simple-coder --help');
         }
     });
-    // 创建 init 命令
+
+    // 创建 AllInOne Projects
+commander
+.command('create-projects') // 命令的名称
+.alias('c') // 命令的别名
+.description('simple-coder create-project <project-name>, to create a new project') // 命令的描述
+.action(() => { // 动作
+    if (process.argv.slice(3).length) {
+        require(path.resolve(__dirname, './lib/create-projects.js'))(process.argv.slice(3));
+    } else {
+        console.log('Please enter a project-name as directory name, or Entry simple-coder --help');
+    }
+});
+
+// 创建 init 命令
 commander
         .command('config') // 命令的名称
         .alias('s') // 命令的别名
@@ -32,8 +46,8 @@ commander
         
         if (process.argv.slice(3).length) {
             let packageName = process.argv[3]
-            let moduleName = 'Test';
-            let targetName = 'dto';
+            let moduleName = undefined;
+            let targetName = undefined;
             
             if (process.argv.slice(4).length){
                 moduleName = process.argv[4];
@@ -52,9 +66,67 @@ commander
         }
     });    
 
-// 创建新模块
+// 创建Web Admin后台新模块
 commander
-    .command('create-module') // 命令的名称
+.command('create-admin-module') // 命令的名称
+.alias('cm') // 命令的别名
+.description('simple-coder create-admin-module  <application-name> <module-name>, to create a new module') // 命令的描述
+.action(() => { // 动作
+    
+    if (process.argv.slice(3).length) {
+        let applicationName = process.argv[3]
+        let moduleName = undefined;
+        let targetName = undefined;
+        
+        if (process.argv.slice(4).length){
+            moduleName = process.argv[4];
+        }
+
+        if (process.argv.slice(5).length){
+            targetName = process.argv[5];
+        }
+        console.log("applicationName:",applicationName);
+        console.log('moduleName:',moduleName)
+        console.log("targetClassName:",targetName);
+        
+        require(path.resolve(__dirname, './lib/admin-module-creator.js'))(applicationName,moduleName,targetName);
+    } else {
+        console.log('Please enter a base package name, or Entry simple-coder --help');
+    }
+});    
+
+// 创建Web Admin后台新模块
+commander
+.command('create-mini-module') // 命令的名称
+.alias('cm') // 命令的别名
+.description('simple-coder create-mini-module  <application-name> <module-name>, to create a new module') // 命令的描述
+.action(() => { // 动作
+    
+    if (process.argv.slice(3).length) {
+        let applicationName = process.argv[3]
+        let moduleName = undefined;
+        let targetName = undefined;
+        
+        if (process.argv.slice(4).length){
+            moduleName = process.argv[4];
+        }
+
+        if (process.argv.slice(5).length){
+            targetName = process.argv[5];
+        }
+        console.log("applicationName:",applicationName);
+        console.log('moduleName:',moduleName)
+        console.log("targetClassName:",targetName);
+        
+        require(path.resolve(__dirname, './lib/mini-module-creator.js'))(applicationName,moduleName,targetName);
+    } else {
+        console.log('Please enter a base package name, or Entry simple-coder --help');
+    }
+});    
+
+// 创建Node Server新模块
+commander
+    .command('create-node-module') // 命令的名称
     .alias('cm') // 命令的别名
     .description('simple-coder create-node-module <module-name> <sourcecode-relative-path>, to create a new module') // 命令的描述
     .action(() => { // 动作
@@ -71,6 +143,7 @@ commander
             console.log('Please enter a module name, or Entry simple-coder --help');
         }
     });
+
 
 // 创建新页面
 commander

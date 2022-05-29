@@ -1,0 +1,160 @@
+kind: pipeline
+type: docker
+name: demo-PROD
+environment:
+  APP_CODE: 1000002
+  APP_NAME: demo
+  IMAGE_ARCH: amd64
+steps:
+  - name: 编译打包代码
+    image: maven:3-jdk-10
+    volumes:
+      - name : mvncache
+        path : /root/.m2
+    commands:
+      - echo 'start to build and package.....'
+      - cd  ./service
+      - mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B
+
+  - name: 构建镜像&PUSH镜像到Hub（PROD）.
+    image: plugins/docker
+    settings:
+      dockerfile: ./release/Dockerfile
+      use_cache: true
+      repo: ccr.ccs.tencentyun.com/windwithlife/demo
+      registry: https://ccr.ccs.tencentyun.com/
+      mirror: https://89cgb0wn.mirror.aliyuncs.com
+      username: 100008098144
+      password: password7&
+      # 更多变量参考https://docs.drone.io/pipeline/environment/reference/
+      tags:
+        - ${DRONE_TAG=latest}
+        - build-ci-${DRONE_BUILD_NUMBER}
+
+  - name: 部署到集群-dron8s方式(PROD)
+    image: bh90210/dron8s:latest
+    settings:
+      yaml: ./release/deployment.yaml
+      kubeconfig:
+        from_secret: kubeconfig-prod
+      app_name: demo
+      path_name: /demo
+      namespace: prod
+      image_name: ccr.ccs.tencentyun.com/windwithlife/demo
+      soa_gateway: api.zhangyongqiao.com
+      soa_gateway_cert: api-default-secret
+      build_tag: build-ci-${DRONE_BUILD_NUMBER}
+
+  - name: 注册镜像-发布记录
+    image: centos
+    volumes:
+        - name: mvncache
+          path: /root/.m2
+    commands:
+        - echo 'deployment....'
+        - currentTime=`date +%Y%m%d%H%M%S`
+        - buildNumber=Build$DRONE_BUILD_NUMBER-$currentTime
+
+        - curl -H "Content-Type:application/json"
+          -d '{"applicationCode":"'"$APP_CODE"'","imageName":"'"$APP_NAME"'","buildNumber":"'"$buildNumber"'"}'
+          -X POST https://api.thingsminder.com/release-service/docker-image/registerDockerImage
+
+
+        - curl -H "Content-Type:application/json"
+          -d '{"applicationCode":"'"$APP_CODE"'","buildNumber":"'"$buildNumber"'"}'
+          -X POST https://api.thingsminder.com/release-service/deployment/deployRecord
+
+volumes:
+  - name: mvncache
+    host:
+      path: /var/lib/cache/.m2
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+
+
+---
+kind: pipeline
+type: docker
+name: demo-UAT
+environment:
+  APP_CODE: 1000002
+  APP_NAME: demo
+  IMAGE_ARCH: amd64
+
+steps:
+  - name: 编译打包代码
+    image: maven:3-jdk-10
+    volumes:
+      - name : mvncache
+        path : /root/.m2
+    commands:
+      - echo 'start to build and package.....'
+      - cd  ./service
+      - mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B
+
+  - name: 构建镜像&PUSH镜像到Hub(UAT).
+    image: plugins/docker
+    settings:
+      dockerfile: ./release/Dockerfile
+      use_cache: true
+      repo: ccr.ccs.tencentyun.com/windwithlife/demo
+      registry: https://ccr.ccs.tencentyun.com/
+      mirror: https://89cgb0wn.mirror.aliyuncs.com
+      username: 100008098144
+      password: password7&
+      # 更多变量参考https://docs.drone.io/pipeline/environment/reference/
+      tags:
+        - ${DRONE_TAG=latest}
+        - build-ci-${DRONE_BUILD_NUMBER}
+
+
+  - name: 部署到集群-(UAT)
+    image: bh90210/dron8s:latest
+    settings:
+      yaml: ./release/deployment.yaml
+      kubeconfig:
+        from_secret: kubeconfig-zyq
+      app_name: demo
+      path_name: /demo
+      namespace: uat
+      production_name: simplex
+      image_name: ccr.ccs.tencentyun.com/windwithlife/demo
+      soa_gateway: api.zhangyongqiao.com
+      soa_gateway_cert: api-default-secret
+      build_tag: build-ci-${DRONE_BUILD_NUMBER}
+
+  - name: 注册镜像-发布记录
+    image: centos
+    volumes:
+        - name: mvncache
+          path: /root/.m2
+    commands:
+        - echo 'deployment....'
+        - currentTime=`date +%Y%m%d%H%M%S`
+        - buildNumber=Build$DRONE_BUILD_NUMBER-$currentTime
+
+        - curl -H "Content-Type:application/json"
+          -d '{"applicationCode":"'"$APP_CODE"'","imageName":"'"$APP_NAME"'","buildNumber":"'"$buildNumber"'"}'
+          -X POST https://api.thingsminder.com/release-service/docker-image/registerDockerImage
+
+
+        - curl -H "Content-Type:application/json"
+          -d '{"applicationCode":"'"$APP_CODE"'","buildNumber":"'"$buildNumber"'"}'
+          -X POST https://api.thingsminder.com/release-service/deployment/deployRecord
+volumes:
+  - name: mvncache
+    host:
+      path: /var/lib/cache/.m2
+
+
+trigger:
+  branch:
+    - release
+  event:
+    - push
+

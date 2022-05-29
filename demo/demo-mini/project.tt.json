@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "demo",
+  "description": "simple workroom",
+  "appid": "wx6df0275477ded21b",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
