@@ -40,7 +40,7 @@ commander
 // 创建新模块
 commander
     .command('create-java-module') // 命令的名称
-    .alias('cm') // 命令的别名
+    .alias('server') // 命令的别名
     .description('simple-coder create-java-module  <package-name> <module-name>, to create a new java module') // 命令的描述
     .action(() => { // 动作
         
@@ -69,7 +69,7 @@ commander
 // 创建Web Admin后台新模块
 commander
 .command('create-admin-module') // 命令的名称
-.alias('cm') // 命令的别名
+.alias('admin') // 命令的别名
 .description('simple-coder create-admin-module  <application-name> <module-name>, to create a new module') // 命令的描述
 .action(() => { // 动作
     
@@ -98,7 +98,7 @@ commander
 // 创建Web Admin后台新模块
 commander
 .command('create-mini-module') // 命令的名称
-.alias('cm') // 命令的别名
+.alias('mini') // 命令的别名
 .description('simple-coder create-mini-module  <application-name> <module-name>, to create a new module') // 命令的描述
 .action(() => { // 动作
     
@@ -127,7 +127,7 @@ commander
 // 创建Node Server新模块
 commander
     .command('create-node-module') // 命令的名称
-    .alias('cm') // 命令的别名
+    .alias('node') // 命令的别名
     .description('simple-coder create-node-module <module-name> <sourcecode-relative-path>, to create a new module') // 命令的描述
     .action(() => { // 动作
         
@@ -147,9 +147,9 @@ commander
 
 // 创建新页面
 commander
-    .command('create-ui') // 命令的名称
-    .alias('cp') // 命令的别名
-    .description('simple-coder create-ui <page-name> <module-name>, to create a new ui element') // 命令的描述
+    .command('create-ui-page') // 命令的名称
+    .alias('page') // 命令的别名
+    .description('simple-coder create-ui-page <page-name> <module-name>, to create a new ui element') // 命令的描述
     .action(() => { // 动作
 
         if (process.argv.slice(3).length) {
