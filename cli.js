@@ -124,26 +124,6 @@ commander
     }
 });    
 
-// 创建Node Server新模块
-commander
-    .command('create-node-module') // 命令的名称
-    .alias('node') // 命令的别名
-    .description('simple-coder create-node-module <module-name> <sourcecode-relative-path>, to create a new module') // 命令的描述
-    .action(() => { // 动作
-        
-        if (process.argv.slice(3).length) {
-            let moduleName = process.argv[3]
-            let srcPath = "./";
-            if (process.argv.slice(4).length){
-                srcPath = process.argv[4];
-            }
-            console.log(process.argv.slice(3),moduleName,srcPath);
-            require(path.resolve(__dirname, './lib/module-creator.js'))(moduleName,srcPath);
-        } else {
-            console.log('Please enter a module name, or Entry simple-coder --help');
-        }
-    });
-
 
 // 创建新页面
 commander
