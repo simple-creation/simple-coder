@@ -32,8 +32,8 @@ const AddNewForm = (props) => {
             }}
             destroyOnClose
             title={intl.formatMessage({
-              id: 'pages.table.update',
-              defaultMessage: '配置修改',
+              id: 'pages.table.addNew',
+              defaultMessage: '新增',
             })}
             visible={props.createModalVisible}
             footer={submitter}

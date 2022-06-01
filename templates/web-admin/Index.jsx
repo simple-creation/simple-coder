@@ -135,7 +135,7 @@ const TableList = () => {
     },
 
     {
-      title: <FormattedMessage id="pages.richtextTable.nameTitle" defaultMessage="品牌名称" />,
+      title: <FormattedMessage id="pages.table.titleName" defaultMessage="品牌名称" />,
       dataIndex: 'name',
       sorter: true,
       hideInForm: true,
@@ -183,8 +183,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.richtextTable.title',
-          defaultMessage: '工单服务类型集',
+          id: 'pages.table.title',
+          defaultMessage: '列表',
         })}
         actionRef={actionRef}
         rowKey="key"

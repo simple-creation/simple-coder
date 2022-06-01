@@ -33,7 +33,7 @@ const UpdateForm = (props) => {
             destroyOnClose
             title={intl.formatMessage({
               id: 'pages.table.update',
-              defaultMessage: '配置修改',
+              defaultMessage: '修改',
             })}
             visible={props.updateModalVisible}
             footer={submitter}
