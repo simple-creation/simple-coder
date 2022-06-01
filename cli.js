@@ -60,7 +60,7 @@ commander
             console.log('moduleName:',moduleName)
             console.log("targetClassName:",targetName);
             
-            require(path.resolve(__dirname, './lib/java-module-creator.js'))(packageName,moduleName,targetName);
+            require(path.resolve(__dirname, './lib/generators/java-module-creator.js'))(packageName,moduleName,targetName);
         } else {
             console.log('Please enter a base package name, or Entry simple-coder --help');
         }
@@ -89,7 +89,7 @@ commander
         console.log('moduleName:',moduleName)
         console.log("targetClassName:",targetName);
         
-        require(path.resolve(__dirname, './lib/admin-module-creator.js'))(applicationName,moduleName,targetName);
+        require(path.resolve(__dirname, './lib/generators/admin-module-creator.js'))(applicationName,moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
@@ -118,7 +118,7 @@ commander
         console.log('moduleName:',moduleName)
         console.log("targetClassName:",targetName);
         
-        require(path.resolve(__dirname, './lib/mini-module-creator.js'))(applicationName,moduleName,targetName);
+        require(path.resolve(__dirname, './lib/generators/mini-module-creator.js'))(applicationName,moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
