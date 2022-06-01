@@ -45,15 +45,6 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
         return result.success(<%=data.moduleClassName%>sDto.builder().items(list).build());
     }
 
-    // @ApiOperation(value="根据ID获取数据",notes = "")
-    // @PostMapping(path = "/findById")
-    // public SimpleResponse<<%=data.moduleDtoClassName%>> findById (@RequestBody IdRequest request){
-    //     Long id = request.getParams().getId();
-    //     System.out.println("applicationId:" + id);
-    //     <%=data.moduleDtoClassName%> dto = service.findById(id);
-    //     SimpleResponse<<%=data.moduleDtoClassName%>> result = new SimpleResponse<<%=data.moduleDtoClassName%>>();
-    //     return result.success(dto);
-    // }
 
     @ApiOperation(value="根据ID获取详细的全量信息",notes = "")
     @PostMapping(path = "/findById")
