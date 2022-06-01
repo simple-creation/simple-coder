@@ -21,5 +21,5 @@ class DefaultModel extends BaseModel{
 
 
 }
-const bizPath = SERVICE_PATH + '/<%=data.moduleName%> ';
+const bizPath = SERVICE_PATH + '/<%=data.moduleName%>';
 export default new DefaultModel({bizPath:bizPath});
