@@ -9,6 +9,7 @@ import ProTable from '@ant-design/pro-table';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './Update';
 import AddNewForm from './Add';
+// import Model from '@/models/ChannelProductModel';
 import Model from '@/models/<%=data.moduleClassName%>Model';
 
 /**
@@ -135,7 +136,7 @@ const TableList = () => {
     },
 
     {
-      title: <FormattedMessage id="pages.table.titleName" defaultMessage="品牌名称" />,
+      title: <FormattedMessage id="pages.table.titleName" defaultMessage="名称" />,
       dataIndex: 'name',
       sorter: true,
       hideInForm: true,

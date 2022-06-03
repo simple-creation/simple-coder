@@ -11,12 +11,15 @@ import {
 
 import { useIntl, FormattedMessage } from 'umi';
 import MediaImageSelect from '@/components/MediaStoreSelect';
+import ReactWEditor from '@/components/RichTextEditor';
 
 const UpdateForm = (props) => {
   const intl = useIntl();
-  const originImage = props.values.logo;
+  let originImage = props.values.image;
+  let defaultContent = props.values.content;
   //const originImage = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
   const [imageUrl, setImageUrl] = useState(originImage);
+  const [contentText, setContentText] = useState(defaultContent);
 
   return (
     <StepsForm
@@ -33,7 +36,7 @@ const UpdateForm = (props) => {
             destroyOnClose
             title={intl.formatMessage({
               id: 'pages.table.update',
-              defaultMessage: '修改',
+              defaultMessage: '配置修改',
             })}
             visible={props.updateModalVisible}
             footer={submitter}
@@ -46,8 +49,8 @@ const UpdateForm = (props) => {
         );
       }}
       onFinish={(values) => {
-        values.logo = imageUrl;
-        console.log(values);
+        values.image = imageUrl;
+        values.contentText = contentText;
         props.onSubmit(values);
         message.success('提交成功');
       }}
@@ -56,7 +59,6 @@ const UpdateForm = (props) => {
         request={async () => ({
           id: props.values.id,
           name: props.values.name,
-          logo: props.values.logo,
           description: props.values.description,
         })}
         title={intl.formatMessage({
@@ -85,35 +87,96 @@ const UpdateForm = (props) => {
               margin: '24px 0',
             }}
           />
+        </div>
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+       request={async () => ({
+        productId: props.values.productId,
+        masterKey: props.values.masterKey,
+        appKey: props.values.appKey,
+        appSecret: props.values.appSecret,
+      })}
+      title="业务信息">
+        <div>
+          <ProFormText
+            label="ProductID"
+            width="md"
+            name="productId"
+            rules={[
+              {
+                required: true,
+                message: '需要一个产品ID',
+              },
+            ]}
+          />
+          <ProFormText
+            label="MasterKey"
+            width="md"
+            name="masterKey"
+          />
 
-          <MediaImageSelect
-            bizType="engineerlevel"
+          <ProFormText
+            label="AppKey"
+            width="md"
+            name="appKey"
+          />
+          <ProFormText
+            label="AppSecret"
+            width="md"
+            name="appSecret"
+          />
+          <Divider
+            style={{
+              margin: '24px 0',
+            }}
+          />
+
+
+        </div>
+      </StepsForm.StepForm>
+      <StepsForm.StepForm title="图片设置">
+      <MediaImageSelect
             originFile={originImage}
+            bizType="news"
             onResult={(response) => setImageUrl(response)}
           />
-        </div>
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+        request={async () => ({
+          content: props.values.content,
+        })}
+        title={intl.formatMessage({
+          id: 'pages.crud.titleDetail',
+          defaultMessage: '详情',
+        })}
+      >
+        <ReactWEditor
+          defaultValue={defaultContent}
+          onChange={(html) => {
+            setContentText(html);
+          }}
+        />
       </StepsForm.StepForm>
 
       <StepsForm.StepForm
         request={async () => ({
-          categoryId: props.values.categoryId,
-          sideType: props.values.sideType,
+          channel: props.values.channel,
         })}
         title={intl.formatMessage({
           id: 'pages.permissionTable.titleConfigDetail',
-          defaultMessage: '分类管理',
+          defaultMessage: '平台通道',
         })}
       >
 
-        <ProFormSelect
-          label="基本类别"
+      <ProFormSelect
+          label="平台通道类别"
           width="md"
-          name="sideType"
+          name="channel"
+          initialValue= "telecom"
           valueEnum={{
-            "wechat": '微信应用',
-            "mobile": '移动端',
-            "web": 'Web/H5站点',
-            "server": '后端服务'
+            "mobile": '移动IOT平台',
+            "telecom": '电信IOT平台',
+            "unicom": '联通IOT平台'
           }}
         />
 

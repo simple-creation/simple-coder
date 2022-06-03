@@ -58,7 +58,7 @@ commander
             }
             console.log("packageName:",packageName);
             console.log('moduleName:',moduleName)
-            console.log("targetClassName:",targetName);
+            console.log("target Name:",targetName? targetName:'all');
             
             require(path.resolve(__dirname, './lib/generators/java-module-creator.js'))(packageName,moduleName,targetName);
         } else {
@@ -87,7 +87,7 @@ commander
         }
         console.log("applicationName:",applicationName);
         console.log('moduleName:',moduleName)
-        console.log("targetClassName:",targetName);
+        console.log("target Name:",targetName? targetName:'all');
         
         require(path.resolve(__dirname, './lib/generators/admin-module-creator.js'))(applicationName,moduleName,targetName);
     } else {

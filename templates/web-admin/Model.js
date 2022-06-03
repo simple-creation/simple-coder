@@ -13,7 +13,7 @@ class DefaultModel extends BaseModel{
     console.log(result);
     let items = result.data.items;
     items.forEach((element) => {
-      element.key = element.value = element.code;
+      element.key = element.value = element.id;
       element.label= element.name;
     });
     return items;

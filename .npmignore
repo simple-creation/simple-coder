@@ -1,4 +1,5 @@
 .idea/
+.templates/
 node_modules/
 modules/
 package/

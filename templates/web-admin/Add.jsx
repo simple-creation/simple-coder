@@ -9,7 +9,7 @@ import ProForm, {
   StepsForm,
 } from '@ant-design/pro-form';
 
-
+import ReactWEditor from '@/components/RichTextEditor';
 
 import MediaImageSelect from '@/components/MediaStoreSelect';
 import { useIntl, FormattedMessage } from 'umi';
@@ -17,6 +17,7 @@ import { useIntl, FormattedMessage } from 'umi';
 const AddNewForm = (props) => {
   const intl = useIntl();
   const [imageUrl, setImageUrl] = useState('');
+  const [contentText, setContentText] = useState("");
 
   return (
     <StepsForm
@@ -47,7 +48,8 @@ const AddNewForm = (props) => {
       }}
       onFinish={(values) => {
         console.log(values);
-        values.logo = imageUrl;
+        values.image = imageUrl;
+        values.content = contentText;
         props.onSubmit(values);
         message.success('提交成功');
       }}
@@ -73,24 +75,76 @@ const AddNewForm = (props) => {
             }}
           />
 
-          {/* <UploadImage onResult={(response)=>setImageUrl(response)} /> */}
-          <MediaImageSelect
-            bizType="engineerlevel"
-            onResult={(response) => setImageUrl(response)}
-          />
+
         </div>
+      </StepsForm.StepForm>
+      <StepsForm.StepForm title="业务信息">
+        <div>
+          <ProFormText
+            label="ProductID"
+            width="md"
+            name="productId"
+            rules={[
+              {
+                required: true,
+                message: '需要一个产品ID',
+              },
+            ]}
+          />
+          <ProFormText
+            label="MasterKey"
+            width="md"
+            name="masterKey"
+          />
+
+          <ProFormText
+            label="AppKey"
+            width="md"
+            name="appKey"
+          />
+          <ProFormText
+            label="AppSecret"
+            width="md"
+            name="appSecret"
+          />
+          <Divider
+            style={{
+              margin: '24px 0',
+            }}
+          />
+
+
+        </div>
+      </StepsForm.StepForm>
+
+      <StepsForm.StepForm title="图片设置">
+        <MediaImageSelect
+          bizType="news"
+          onResult={(response) => setImageUrl(response)}
+        />
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+        title="详情信息">
+
+        <ReactWEditor
+          defaultValue={'标题'}
+          onChange={(html) => {
+            setContentText(html);
+          }}
+        />
+
       </StepsForm.StepForm>
 
       <StepsForm.StepForm title="完成">
         <ProFormSelect
-          label="基本类别"
+          label="平台通道类别"
           width="md"
-          name="sideType"
+          name="channel"
+          initialValue="telecom"
           valueEnum={{
-            "wechat": '微信应用',
-            "mobile": '移动端',
-            "web": 'Web/H5站点',
-            "server": '后端服务'
+            "mobile": '移动IOT平台',
+            "telecom": '电信IOT平台',
+            "unicom": '联通IOT平台'
           }}
         />
       </StepsForm.StepForm>
