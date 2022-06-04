@@ -153,13 +153,22 @@ const TableList = () => {
       valueType: 'option',
       render: (_, record) => [
         <a
+        key="config"
+        onClick={() => {
+          let configPath = "/<%=data.moduleName%>/detail";
+          history.push({ pathname: configPath ,id:record.id});
+        }}
+      >
+        <FormattedMessage id="pages.table.operatationDetail" defaultMessage="详情" />
+      </a>,
+        <a
           key="config"
           onClick={() => {
             handleUpdateModalVisible(true);
             setCurrentRow(record);
           }}
         >
-          <FormattedMessage id="pages.table.modifyTitle" defaultMessage="修改" />
+          <FormattedMessage id="pages.table.operationUpdate" defaultMessage="修改" />
         </a>,
         <Popconfirm
           key={'Remove-' + record.id}
@@ -174,7 +183,7 @@ const TableList = () => {
         >
           <a href="#">
             {' '}
-            <FormattedMessage id="pages.table.remove" defaultMessage="删除" />{' '}
+            <FormattedMessage id="pages.table.operationRemove" defaultMessage="删除" />{' '}
           </a>
         </Popconfirm>,
       ],

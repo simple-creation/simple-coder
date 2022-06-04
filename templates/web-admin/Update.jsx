@@ -90,56 +90,31 @@ const UpdateForm = (props) => {
         </div>
       </StepsForm.StepForm>
       <StepsForm.StepForm
-       request={async () => ({
-        productId: props.values.productId,
-        masterKey: props.values.masterKey,
-        appKey: props.values.appKey,
-        appSecret: props.values.appSecret,
-      })}
-      title="业务信息">
-        <div>
+        request={async () => ({
+          bizInfo: props.values.bizInfo,
+          bizInfo2: props.values.bizInfo2,
+        })}
+        title="业务信息">
+         <div>
           <ProFormText
-            label="ProductID"
+            label="业务信息"
             width="md"
-            name="productId"
-            rules={[
-              {
-                required: true,
-                message: '需要一个产品ID',
-              },
-            ]}
+            name="bizInfo"
           />
           <ProFormText
-            label="MasterKey"
+            label="业务信息2"
             width="md"
-            name="masterKey"
+            name="bizInfo2"
           />
-
-          <ProFormText
-            label="AppKey"
-            width="md"
-            name="appKey"
-          />
-          <ProFormText
-            label="AppSecret"
-            width="md"
-            name="appSecret"
-          />
-          <Divider
-            style={{
-              margin: '24px 0',
-            }}
-          />
-
 
         </div>
       </StepsForm.StepForm>
       <StepsForm.StepForm title="图片设置">
-      <MediaImageSelect
-            originFile={originImage}
-            bizType="news"
-            onResult={(response) => setImageUrl(response)}
-          />
+        <MediaImageSelect
+          originFile={originImage}
+          bizType="news"
+          onResult={(response) => setImageUrl(response)}
+        />
       </StepsForm.StepForm>
       <StepsForm.StepForm
         request={async () => ({
@@ -160,26 +135,20 @@ const UpdateForm = (props) => {
 
       <StepsForm.StepForm
         request={async () => ({
-          channel: props.values.channel,
+          type: props.values.type,
         })}
         title={intl.formatMessage({
           id: 'pages.permissionTable.titleConfigDetail',
-          defaultMessage: '平台通道',
+          defaultMessage: '分类',
         })}
       >
 
-      <ProFormSelect
-          label="平台通道类别"
+        <ProFormSelect
+          label="分类"
           width="md"
-          name="channel"
-          initialValue= "telecom"
-          valueEnum={{
-            "mobile": '移动IOT平台',
-            "telecom": '电信IOT平台',
-            "unicom": '联通IOT平台'
-          }}
+          name="type"
+          request={async () => { return TypeModel.queryByTypeAsOptions("iot-solution"); }}
         />
-
       </StepsForm.StepForm>
     </StepsForm>
   );

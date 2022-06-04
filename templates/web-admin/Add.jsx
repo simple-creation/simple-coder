@@ -2,17 +2,18 @@ import React, { useRef, useState } from 'react';
 import { Modal, message, Divider, Alert } from 'antd';
 
 import ProForm, {
-  ProFormDigit,
   ProFormSelect,
   ProFormText,
   ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-form';
+import { useIntl} from 'umi';
 
 import ReactWEditor from '@/components/RichTextEditor';
 
 import MediaImageSelect from '@/components/MediaStoreSelect';
-import { useIntl, FormattedMessage } from 'umi';
+import TypeModel from '@/models/DictionaryModel';
+
 
 const AddNewForm = (props) => {
   const intl = useIntl();
@@ -81,38 +82,15 @@ const AddNewForm = (props) => {
       <StepsForm.StepForm title="业务信息">
         <div>
           <ProFormText
-            label="ProductID"
+            label="业务信息"
             width="md"
-            name="productId"
-            rules={[
-              {
-                required: true,
-                message: '需要一个产品ID',
-              },
-            ]}
+            name="bizInfo"
           />
           <ProFormText
-            label="MasterKey"
+            label="业务信息2"
             width="md"
-            name="masterKey"
+            name="bizInfo2"
           />
-
-          <ProFormText
-            label="AppKey"
-            width="md"
-            name="appKey"
-          />
-          <ProFormText
-            label="AppSecret"
-            width="md"
-            name="appSecret"
-          />
-          <Divider
-            style={{
-              margin: '24px 0',
-            }}
-          />
-
 
         </div>
       </StepsForm.StepForm>
@@ -136,16 +114,11 @@ const AddNewForm = (props) => {
       </StepsForm.StepForm>
 
       <StepsForm.StepForm title="完成">
-        <ProFormSelect
-          label="平台通道类别"
+      <ProFormSelect
+          label="分类"
           width="md"
-          name="channel"
-          initialValue="telecom"
-          valueEnum={{
-            "mobile": '移动IOT平台',
-            "telecom": '电信IOT平台',
-            "unicom": '联通IOT平台'
-          }}
+          name="type"
+          request={ async()=>{return TypeModel.queryByTypeAsOptions("iot-solution");}}
         />
       </StepsForm.StepForm>
     </StepsForm>
