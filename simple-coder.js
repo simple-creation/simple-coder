@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
-const projectSetup = require('./lib/setup');
+const projectSetup = require('./lib/operation');
 const codeTools = require('./lib/code-tools');
 const executeTools = require('./lib/execute-tool');
 const createProjectSet = async (configData,workRootPath)=> {
