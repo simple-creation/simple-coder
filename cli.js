@@ -69,7 +69,7 @@ commander
 // 创建Web Admin后台新模块
 commander
 .command('create-admin-module') // 命令的名称
-.alias('admin') // 命令的别名
+.alias('admin-module') // 命令的别名
 .description('simple-coder create-admin-module  <application-name> <module-name>, to create a new module') // 命令的描述
 .action(() => { // 动作
     
@@ -90,6 +90,35 @@ commander
         console.log("target Name:",targetName? targetName:'all');
         
         require(path.resolve(__dirname, './lib/generators/admin-module-creator.js'))(applicationName,moduleName,targetName);
+    } else {
+        console.log('Please enter a base package name, or Entry simple-coder --help');
+    }
+});    
+
+// 创建Web站点模块
+commander
+.command('create-web-module') // 命令的名称
+.alias('web-module') // 命令的别名
+.description('simple-coder create-web-module  <application-name> <module-name>, to create a new module') // 命令的描述
+.action(() => { // 动作
+    
+    if (process.argv.slice(3).length) {
+        let applicationName = process.argv[3]
+        let moduleName = undefined;
+        let targetName = undefined;
+        
+        if (process.argv.slice(4).length){
+            moduleName = process.argv[4];
+        }
+
+        if (process.argv.slice(5).length){
+            targetName = process.argv[5];
+        }
+        console.log("applicationName:",applicationName);
+        console.log('moduleName:',moduleName)
+        console.log("target Name:",targetName? targetName:'all');
+        
+        require(path.resolve(__dirname, './lib/generators/web-module-creator.js'))(applicationName,moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
