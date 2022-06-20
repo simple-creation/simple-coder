@@ -35,16 +35,25 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
     //     return result.success(<%=data.moduleClassName%>sDto.builder().items(list).build());
     // }
 
-    @ApiOperation(value="查询全部数据项")
+    @ApiOperation(value="查询全部简单数据项")
     @GetMapping(path = "/queryAll")
     public SimpleResponse<<%=data.moduleClassName%>sDto> queryAll(){
 
-        List<<%=data.moduleClassName%>DetailDto> list = service.findAllDetails();
+        List<<%=data.moduleClassName%>Dto> list = service.findAll();
         SimpleResponse<<%=data.moduleClassName%>sDto> result = new SimpleResponse<<%=data.moduleClassName%>sDto>();
 
         return result.success(<%=data.moduleClassName%>sDto.builder().items(list).build());
     }
 
+    @ApiOperation(value="查询全部详细数据项")
+    @GetMapping(path = "/queryAll")
+    public SimpleResponse<<%=data.moduleClassName%>DetailsDto> queryAll(){
+
+        List<<%=data.moduleClassName%>DetailDto> list = service.findAllDetails();
+        SimpleResponse<<%=data.moduleClassName%>DetailsDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailsDto>();
+
+        return result.success(<%=data.moduleClassName%>DetailsDto.builder().items(list).build());
+    }
 
     @ApiOperation(value="根据ID获取详细的全量信息",notes = "")
     @PostMapping(path = "/findById")

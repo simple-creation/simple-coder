@@ -40,7 +40,7 @@ commander
 // 创建新模块
 commander
     .command('create-java-module') // 命令的名称
-    .alias('server') // 命令的别名
+    .alias('service-module') // 命令的别名
     .description('simple-coder create-java-module  <package-name> <module-name>, to create a new java module') // 命令的描述
     .action(() => { // 动作
         
@@ -74,22 +74,22 @@ commander
 .action(() => { // 动作
     
     if (process.argv.slice(3).length) {
-        let applicationName = process.argv[3]
+        //let applicationName = process.argv[3]
         let moduleName = undefined;
         let targetName = undefined;
         
-        if (process.argv.slice(4).length){
-            moduleName = process.argv[4];
+        if (process.argv.slice(3).length){
+            moduleName = process.argv[3];
         }
 
-        if (process.argv.slice(5).length){
-            targetName = process.argv[5];
+        if (process.argv.slice(4).length){
+            targetName = process.argv[4];
         }
-        console.log("applicationName:",applicationName);
+        //console.log("applicationName:",applicationName);
         console.log('moduleName:',moduleName)
         console.log("target Name:",targetName? targetName:'all');
         
-        require(path.resolve(__dirname, './lib/generators/admin-module-creator.js'))(applicationName,moduleName,targetName);
+        require(path.resolve(__dirname, './lib/generators/admin-module-creator.js'))(moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
@@ -103,22 +103,22 @@ commander
 .action(() => { // 动作
     
     if (process.argv.slice(3).length) {
-        let applicationName = process.argv[3]
+        //let applicationName = process.argv[3]
         let moduleName = undefined;
         let targetName = undefined;
         
-        if (process.argv.slice(4).length){
-            moduleName = process.argv[4];
+        if (process.argv.slice(3).length){
+            moduleName = process.argv[3];
         }
 
-        if (process.argv.slice(5).length){
-            targetName = process.argv[5];
+        if (process.argv.slice(4).length){
+            targetName = process.argv[4];
         }
-        console.log("applicationName:",applicationName);
+        //console.log("applicationName:",applicationName);
         console.log('moduleName:',moduleName)
         console.log("target Name:",targetName? targetName:'all');
         
-        require(path.resolve(__dirname, './lib/generators/web-module-creator.js'))(applicationName,moduleName,targetName);
+        require(path.resolve(__dirname, './lib/generators/web-module-creator.js'))(moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
@@ -127,27 +127,27 @@ commander
 // 创建Web Admin后台新模块
 commander
 .command('create-mini-module') // 命令的名称
-.alias('mini') // 命令的别名
+.alias('mini-module') // 命令的别名
 .description('simple-coder create-mini-module  <application-name> <module-name>, to create a new module') // 命令的描述
 .action(() => { // 动作
     
     if (process.argv.slice(3).length) {
-        let applicationName = process.argv[3]
+        //let applicationName = process.argv[3]
         let moduleName = undefined;
         let targetName = undefined;
         
-        if (process.argv.slice(4).length){
-            moduleName = process.argv[4];
+        if (process.argv.slice(3).length){
+            moduleName = process.argv[3];
         }
 
-        if (process.argv.slice(5).length){
-            targetName = process.argv[5];
+        if (process.argv.slice(4).length){
+            targetName = process.argv[4];
         }
-        console.log("applicationName:",applicationName);
+        //console.log("applicationName:",applicationName);
         console.log('moduleName:',moduleName)
         console.log("targetClassName:",targetName);
         
-        require(path.resolve(__dirname, './lib/generators/mini-module-creator.js'))(applicationName,moduleName,targetName);
+        require(path.resolve(__dirname, './lib/generators/mini-module-creator.js'))(moduleName,targetName);
     } else {
         console.log('Please enter a base package name, or Entry simple-coder --help');
     }
