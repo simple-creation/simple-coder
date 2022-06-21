@@ -25,15 +25,6 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
 
     private final <%=data.moduleClassName%>Service service;
 
-    // @ApiOperation(value="查询全部数据项（用于测试)")
-    // @GetMapping(path = "/queryAll")
-    // public SimpleResponse<<%=data.moduleClassName%>sDto> queryAll (){
-
-    //     List<<%=data.moduleDtoClassName%>> list = service.findAll();
-    //     SimpleResponse<<%=data.moduleClassName%>sDto> result = new SimpleResponse<<%=data.moduleClassName%>sDto>();
-
-    //     return result.success(<%=data.moduleClassName%>sDto.builder().items(list).build());
-    // }
 
     @ApiOperation(value="查询全部简单数据项")
     @GetMapping(path = "/queryAll")
@@ -46,8 +37,8 @@ public class <%=data.moduleClassName%>Controller extends BaseController {
     }
 
     @ApiOperation(value="查询全部详细数据项")
-    @GetMapping(path = "/queryAll")
-    public SimpleResponse<<%=data.moduleClassName%>DetailsDto> queryAll(){
+    @GetMapping(path = "/queryAllDetails")
+    public SimpleResponse<<%=data.moduleClassName%>DetailsDto> queryAllDetails(){
 
         List<<%=data.moduleClassName%>DetailDto> list = service.findAllDetails();
         SimpleResponse<<%=data.moduleClassName%>DetailsDto> result = new SimpleResponse<<%=data.moduleClassName%>DetailsDto>();
