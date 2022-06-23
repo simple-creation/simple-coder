@@ -17,7 +17,7 @@
 ### 手动对模板项目进行配置
 1. 手动到git库中下载项目模板
 2. 进入到模板库目录中
-3. 对横目进行可用化配置（根据提示录入项目配置信息
+3. 对项目进行可用化配置（根据提示录入项目配置信息）
 
    $simple-coder config 
 
@@ -56,12 +56,36 @@ public class DemoModel implements Serializable {
 }
 ```
   
--  用simple-coder create-java-module [基本包名][Model名]自动解析Model并创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
+-  用simple-coder create-java-module/service-module [基本包名][Model名] [类名]自动解析Model定义并创建对应的 DAO,DTO,SERVICE,CONTROLLER(如果加上Model名这个参数，则只会生成或更新此Model对应的 DAO,DTO,SERVICE,CONTROLLER)
 
-   $simple-coder create-java-module com.simple.bz Demo
-   
+   $simple-coder create-java-module com.simple.bz Demo (如果不指定Demo缺省会把com/simple/bz/model目录下的所有model对应的dao,dto,service,controller都会重新创建。)
+-  指定创建某一类型类（比如dto,service,dao,controller等）
+   $simple-coder create-java-module com.simple.bz Demo dto(这条命令只会根据指定的Demo Model生成对应的dto)
+       
  
 2. 创建小程序模块
+
+-  simple-coder create-mini-module/mini-module [Module名] [类名]
+-  用simple-coder create-mini-module/mini-module [Module名] [类名] 当前小程序上创建对应模块的，Model,Page,Route等
+   $simple-coder create-mini-module Demo 
+-  指定创建某一类型类（比如model,page,route等）
+   $simple-coder create-mini-module Demo model (这条命令只会在Demo模块下创建 model类)
+
+3. 创建后台管理站点模块
+
+-  simple-coder create-admin-module/admin-module [Module名] [类名]
+-  创建当前后台站对应模块的Model,Page,Route等
+   $simple-coder create-admin-module Demo 
+-  指定创建某一类型类（比如model,page,route等）
+   $simple-coder create-admin-module Demo model (这条命令只会在Demo模块下创建model类,不会创建或更新page,route等)   
+
+4. 创建后台管理站点模块
+
+-  simple-coder create-web-module/web-module [Module名] [类名]
+-  创建Web Online站点对应模块的Model,Page,Route等
+   $simple-coder create-web-module Demo 
+-  指定创建某一类型类（比如model,page,route等）
+   $simple-coder create-web-module Demo model (这条命令只会在Demo模块下创建model类,不会创建或更新page,route等)     
 
 ### 组件供第三方应用使用：
 1. 应用安装
