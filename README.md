@@ -17,7 +17,7 @@
 ### 手动对模板项目进行配置
 1. 手动到git库中下载项目模板
 2. 进入到模板库目录中
-3. 对横目进行可用化配置（根据提示录入项目配置信息
+3. 对模板生成的项目进行可用化配置（根据提示录入项目配置信息*暂停支持)
 
    $simple-coder config 
 
@@ -25,7 +25,7 @@
 1. 创建Java Service模块
 -  进入Service项目源码目录或API-RPC项目目录
 
--  在服务代码的Model定义目录（om/simple/bz/model）下创建一个模块的Model类（暂支持JPA ORM)
+-  在服务代码的Model定义目录（例如com/simple/bz/model）下创建一个模块的Model类（暂支持JPA ORM)
 
 ```
 package com.simple.bz.model;
