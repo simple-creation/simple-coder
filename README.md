@@ -1,5 +1,6 @@
 
-
+### 设计思路
+   根据不同类型框架（springboot的service框架，基于taro的小程序框架，基于ant design pro V5的后台框架，基于nextjs的Web Online框架）创建项目主框架，由不同功能模板，进行自动化创建模块，由simple-framewor/simple-framework-mini提供各类前端界面组件库。
 ### 命令行Cli工具安装
 
 1. 全局安装simple-coder
