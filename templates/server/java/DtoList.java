@@ -11,6 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class <%=data.moduleClassName%>sDto{
-    List<<%=data.moduleClassName%>DetailDto> items;
+    List<<%=data.moduleClassName%>Dto> items;
 
 }

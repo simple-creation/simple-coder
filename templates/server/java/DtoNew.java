@@ -13,12 +13,10 @@ import java.util.Date;
 @Builder
 public class <%=data.moduleClassName%>NewDto{
     <%for (var field in data.moduleDefine){
-        var fieldDataType = data.moduleDefine[field];
-        var fieldName     = field;         
+        var fieldDataType = data.moduleDefine[field];      
         if ((field =='id')||(field=='_id')){ %> 
     <%}else{ %>
-    private <%=fieldDataType%> <%=field%>;
-    
+    private <%=fieldDataType%> <%=field%>; 
     <%}}%>
  
 }
