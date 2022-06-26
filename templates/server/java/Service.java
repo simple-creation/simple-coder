@@ -77,12 +77,12 @@ public class <%=data.moduleClassName%>Service {
 
 
     public <%=data.moduleDtoClassName%> findById(Long id){
-        <%=data.modelClassName%> model =  dao.findById(id).get();
+        <%=data.modelClassName%> model =  dao.findById(id).orElse(null);
         return this.convertToDto(model);
     }
 
 	public <%=data.moduleClassName%>DetailDto findDetailById(Long id){
-        <%=data.modelClassName%> model =  dao.findById(id).get();
+        <%=data.modelClassName%> model =  dao.findById(id).orElse(null);
         return this.convertToDetailDto(model);
     }
 
@@ -94,7 +94,7 @@ public class <%=data.moduleClassName%>Service {
 
     public <%=data.moduleDtoClassName%> update(<%=data.moduleDtoClassName%> item){
         Long id = item.getId();
-        <%=data.modelClassName%> model = dao.findById(id).get();
+        <%=data.modelClassName%> model = dao.findById(id).orElse(null);
         if(null == model ){return null;}
         this.modelMapper.map(item, model);
         this.dao.save(model);
